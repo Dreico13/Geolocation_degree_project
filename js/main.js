@@ -1,11 +1,15 @@
-window.onload = function () {
+import  {clsLocation}  from "./Models/clsLocation.js";
+
+window.onload = () => {
     new Main();
 }
 
 class Main {
     
     constructor() {
-        console.log("La página se ha iniciado");
+
+        this.obj_location = new clsLocation();
+        console.log("Hello");
     }
 
 }
