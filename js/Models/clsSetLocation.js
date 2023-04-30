@@ -17,6 +17,7 @@ export class clsSetLocation {
                 this._errors[0] = "Geolocation is not supported by this browser.";
             }
             console.log(this._errors);
+            console.log(this._position);
             
         }) 
     }
