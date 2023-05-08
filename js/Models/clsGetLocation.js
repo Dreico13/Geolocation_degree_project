@@ -1,14 +1,14 @@
 export class clsGetLocation {
 
     constructor() {
-        this.#initLocation();
+        this.initLocation();
         this._position = [];
         this._errors = [];
         this.setPosition = this._setPosition.bind(this);
         this.setErrors = this._setErrors.bind(this);
     }
 
-    #initLocation() {
+    initLocation() {
         var startLocalization = document.getElementById('startButton');
         startLocalization.addEventListener('click', () => {
             if (navigator.geolocation) {
