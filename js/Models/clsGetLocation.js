@@ -10,17 +10,25 @@ export class clsGetLocation {
 
     #initLocation() {
         var startLocalization = document.getElementById('startButton');
+        var stopLocalization = document.getElementById('stopButton');
+        var watchId;
+       
         startLocalization.addEventListener('click', () => {
-            if (navigator.geolocation) {
-                this._errors = [];
-                navigator.geolocation.getCurrentPosition(this.setPosition, this.setErrors);
-            } else {
-                this._errors[0] = "Geolocation is not supported by this browser.";
-            }
-            console.log(this._errors);
-            console.log(this._position);
             
-        }) 
+                if (navigator.geolocation) {
+                    watchId = navigator.geolocation.watchPosition(this.setPosition,this.setErrors);
+                } else {
+                    this._errors[0] = "Geolocation is not supported by this browser.";
+                }
+                console.log(this._errors);
+                console.log(this._position);
+        })
+
+        stopLocalization.addEventListener('click', () => {
+            
+            navigator.geolocation.clearWatch(watchId);
+            
+        })
     }
 
     _setPosition(position) {
