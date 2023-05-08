@@ -1,4 +1,4 @@
-import  {clsSetLocation}  from "./Models/clsSetLocation.js";
+import  {clsGetLocation}  from "./Models/clsGetLocation.js";
 
 window.onload = () => {
     new Main();
@@ -8,8 +8,7 @@ class Main {
     
     constructor() {
 
-        this.obj_location = new clsSetLocation();
-        console.log("Hello");
+        this.obj_location = new clsGetLocation();
     }
 
 }
