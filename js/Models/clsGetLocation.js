@@ -1,9 +1,12 @@
-export class clsGetLocation {
+import { clsShowErrors } from "../Views/clsShowErrors.js";
+import { clsShowMap } from "../Views/clsShowMap.js";
 
+export class clsGetLocation {
+    
     constructor() {
         this.#initLocation();
-        this._position = [];
-        this._errors = [];
+        this.obj_clsShowMap = new clsShowMap();
+        this.obj_clsShowErrors = new clsShowErrors();
         this.setPosition = this._setPosition.bind(this);
         this.setErrors = this._setErrors.bind(this);
     }
@@ -14,33 +17,30 @@ export class clsGetLocation {
         var watchId;
        
         startLocalization.addEventListener('click', () => {
-            
+                alert("You start the Geolocalization.")
                 if (navigator.geolocation) {
                     watchId = navigator.geolocation.watchPosition(this.setPosition,this.setErrors);
                 } else {
-                    this._errors[0] = "Geolocation is not supported by this browser.";
+                    this.obj_clsShowErrors.setError("Geolocation is not supported by this browser."); 
                 }
-                console.log(this._errors);
-                console.log(this._position);
+
         })
 
         stopLocalization.addEventListener('click', () => {
-            
+            alert("You stop the Geolocalization.")
             navigator.geolocation.clearWatch(watchId);
             
         })
     }
 
     _setPosition(position) {
-        console.log(position.coords.latitude);
-        console.log(position.coords.longitude);
+        this.obj_clsShowMap.setCoordinates(position.coords.longitude,position.coords.latitude);        
     }
 
     _setErrors(error) {
         var stringError;
         switch(error.code) {
             case error.PERMISSION_DENIED:
-                // console.log("User denied the request for Geolocation.");
                 stringError = "User denied the request for Geolocation.";
                 break;
             case error.POSITION_UNAVAILABLE:
@@ -53,15 +53,9 @@ export class clsGetLocation {
                 stringError = "An unknown error occurred.";
               break;
         }
-       this._errors[0] = stringError;
 
+        this.obj_clsShowErrors.setError(stringError);
+       
     }
 
-    getPosition() {
-        return this._position;
-    }
-
-    getErrors() {
-        return this.errors;
-    }
 }
