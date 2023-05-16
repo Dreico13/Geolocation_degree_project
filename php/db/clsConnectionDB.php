@@ -1,6 +1,6 @@
 <?php 
 include("controlDB.php");
-class ConnectDB {
+class clsConnectionDB {
 
     private $host = HOST;
     private $dbusername = DBUSERNAME;
@@ -16,7 +16,7 @@ class ConnectDB {
         try {
             $this->db = new PDO("sqlsrv:Server=$this->host;database=$this->dbname", $this->dbusername, $this->dbpassword);
             $this -> db -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            
         } catch (Exception $error) {
             echo "No se ha podido conectar a la bd: ". $error -> getMessage();
         }
