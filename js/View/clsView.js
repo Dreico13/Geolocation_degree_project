@@ -4,12 +4,12 @@ export class clsView {
 /////////////////////////////////
     constructor() {
 
-        this.#init();
+        this._root = document.getElementById("root");
      
     }
-
-    #init() {
-
+////////////////////////////////
+    init() {
+        
         const div = document.createElement("div");
 
         div.innerHTML = `<button class="btn btn-primary m-2" type="button" id="startButton">
@@ -19,28 +19,35 @@ export class clsView {
                             Stop Localization  
                         </button>`;
         
-        document.body.appendChild(div);
+        this._root.appendChild(div);
 
     }
 
 /////////////////////////////////
-    showCoordinates() {
+    showCoordinates(pCoordinates) {
 
-        const div = document.createElement("div");
+        // console.log(pCoordinates);
 
-        div.innerHTML = `<h1>Longitude: ${longitude} - Latitude: ${latitude} </h1>`;
+        // const div = document.createElement("div");
 
-        document.body.appendChild(div);
+        // div.innerHTML = `<h1>Longitude: ${pCoordinates.Longitude} - Latitude: ${pCoordinates.Latitude} </h1>`;
+
+        // this._root.appendChild(div);
     }
 
 /////////////////////////////////
-    showErrors() {
+    showErrors(pError) {
         
         const div = document.createElement("div");
 
-        div.innerHTML = `<h1>Error: ${error}</h1>`;
+        div.innerHTML = `<h1>Error: ${pError}</h1>`;
 
-        document.body.appendChild(div);
+        this._root.appendChild(div);
 
     }
+//////////////////////////////////
+    showExecutionTimer() {
+
+    }
+    
 }
