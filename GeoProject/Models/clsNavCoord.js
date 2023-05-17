@@ -1,4 +1,3 @@
-import { clsView } from "../View/clsView.js";
 import { clsGeoServer } from "../clsGeoServer.js";
 
 
@@ -6,32 +5,31 @@ export class clsNavCoord {
     
 ///////////////////////////////////////////////////
     constructor() {
-        this.obj_clsView = new clsView();
         this.obj_clsGeoServer = new clsGeoServer();
         this.setCoordinates = this._setCoordinates.bind(this);
         this.setErrors = this._setErrors.bind(this);
+        this.watchId;
     }
 
 //////////////////////////////////////////////////
     initNavigation() {
         
-        var watchId;
+        
         
         alert("You start the Geolocalization.")
         if (navigator.geolocation) {
-            watchId = navigator.geolocation.watchPosition(this.setCoordinates,this.setErrors);
+            this.watchId = navigator.geolocation.watchPosition(this.setCoordinates,this.setErrors);
         } else {
             this.obj_clsView.showErrors("Geolocation is not supported by this browser.");
         }
         
-        return watchId;
      
     }
 
 ///////////////////////////////////////////////////
-    stopNavigation(pWatchId) {
+    stopNavigation() {
         alert("You stop the Geolocalization.")
-        navigator.geolocation.clearWatch(pWatchId);
+        navigator.geolocation.clearWatch(this.watchId);
 
     }
     
