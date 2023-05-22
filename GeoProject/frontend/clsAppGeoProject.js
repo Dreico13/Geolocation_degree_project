@@ -47,10 +47,13 @@ class clsAppGeoProject {
     #onStart(pNavigationState){
 
         if (pNavigationState) {
+
             this.obj_clsNavCoord.initNavigation();
+            this.obj_clsView.showExecutionTimer();
 
         } else {
             this.obj_clsNavCoord.stopNavigation();
+            this.obj_clsView.clearInterval();
         }
         
     }

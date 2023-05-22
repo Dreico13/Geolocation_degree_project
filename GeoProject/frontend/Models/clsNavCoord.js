@@ -1,3 +1,4 @@
+import { clsView } from "../View/clsView.js";
 import { clsGeoServer } from "../clsGeoServer.js";
 
 
@@ -6,6 +7,7 @@ export class clsNavCoord {
 ///////////////////////////////////////////////////
     constructor() {
         this.obj_clsGeoServer = new clsGeoServer();
+        this.obj_clsView = new clsView();
         this.setCoordinates = this._setCoordinates.bind(this);
         this.setErrors = this._setErrors.bind(this);
         this.watchId;
@@ -14,15 +16,12 @@ export class clsNavCoord {
 //////////////////////////////////////////////////
     initNavigation() {
         
-        
-        
         alert("You start the Geolocalization.")
         if (navigator.geolocation) {
             this.watchId = navigator.geolocation.watchPosition(this.setCoordinates,this.setErrors);
         } else {
             this.obj_clsView.showErrors("Geolocation is not supported by this browser.");
         }
-        
      
     }
 
@@ -30,6 +29,7 @@ export class clsNavCoord {
     stopNavigation() {
         alert("You stop the Geolocalization.")
         navigator.geolocation.clearWatch(this.watchId);
+        this.obj_clsGeoServer.stopNavigation();
 
     }
     
@@ -38,14 +38,13 @@ export class clsNavCoord {
 
         let navigationData = {};
         navigationData = {"Longitude":position.coords.longitude, "Latitude":position.coords.latitude};
-        //this.obj_clsView.showCoordinates(navigationData);
         this.obj_clsGeoServer.sendCoordinatesToDb(navigationData);
         
     }
 
 //////////////////////////////////////////////////
     _setErrors(error) {
-        let stringError;
+        var stringError;
         switch(error.code) {
             case error.PERMISSION_DENIED:
                 stringError = "User denied the request for Geolocation.";
@@ -61,7 +60,6 @@ export class clsNavCoord {
               break;
         }
         this.obj_clsView.showErrors(stringError);
-
     }
 
 
