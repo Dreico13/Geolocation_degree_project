@@ -10,6 +10,7 @@ CREATE TABLE _sap_coordinates (
 	coordinates_id  INT IDENTITY(1,1) PRIMARY KEY ,
 	longitude DECIMAL(18,7),
 	latitude DECIMAL(18,7),
+	altitude INT DEFAULT 0,
 	created  DATETIME DEFAULT GETDATE(),
     _row_guid UNIQUEIDENTIFIER DEFAULT NEWID()
 )
@@ -24,6 +25,7 @@ CREATE TABLE _sap_logs (
 	log_identifier VARCHAR(255),
 	longitude DECIMAL(18,7),
 	latitude DECIMAL (18,7),
+	altitude INT DEFAULT 0,
 	coordinate_created DATETIME,
 	_log_created  DATETIME DEFAULT GETDATE(),
     _row_guid UNIQUEIDENTIFIER DEFAULT NEWID()

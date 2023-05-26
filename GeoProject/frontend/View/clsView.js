@@ -24,6 +24,40 @@ export class clsView {
         this._root.appendChild(div);
 
     }
+//////////////////////////////////
+    static initMap(pCoordinates) {
+
+        var coordinates = JSON.parse(pCoordinates);
+        console.log(coordinates);
+
+        
+            // Crea el mapa en el contenedor con el ID "map"
+            var map = L.map("map").setView([41.271296, 1.9759104], 10);
+
+            // Agrega una capa de mapa base (por ejemplo, OpenStreetMap)
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
+
+            // Agrega marcadores para las coordenadas
+            coordinates.forEach(function(coordinate) {
+                var lat = coordinate.latitude;
+                var lng = coordinate.longitude;
+                L.marker([lat, lng]).addTo(map);
+            });
+        
+    }
+
+/////////////////////////////////
+    removeInitButtons() {
+        const startButton = document.getElementById("startButton");
+        const stopButton = document.getElementById("stopButton");
+
+        startButton.remove();
+        stopButton.remove();
+    }
+
 
 /////////////////////////////////
     showErrors(pError) {
@@ -78,5 +112,8 @@ export class clsView {
         clearInterval(this._intervalId);
           
     }
+
+///////////////////////////////////////
+    
     
 }
