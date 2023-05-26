@@ -5,12 +5,18 @@ include_once("/opt/lampp/htdocs/M03_GEOLOCATIONPROJECT/GeoProject/backend/DbUtil
 class clsCoordinatesController {
 
 //////////////////////////////////////////////////
-    public static function GetCoordinatesDB()  {
-        $obj_clsControllerDB = new clsControllerDb("sp_sap_get_coordinates");
+    public static function GetCoordinatesDBinJSON()  {
+        $obj_clsControllerDB = new clsControllerDb("sp_sap_get_coordinates_in_json");
         $result = $obj_clsControllerDB ->dbResponse();
         $array = json_decode($result,true);
         return $array;
 
+    }
+//////////////////////////////////////////////////
+    public static function GetCoordinatesDBinXML() {
+        $obj_clsControllerDB = new clsControllerDb("sp_sap_get_coordinates_in_xml");
+        $result = $obj_clsControllerDB ->dbResponse();
+        return $result;
     }
 
 /////////////////////////////////////////////////

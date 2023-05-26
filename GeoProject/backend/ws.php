@@ -1,6 +1,9 @@
 <?php
 
+include_once __DIR__."/KML/dataKML.php";
 include_once __DIR__."/CoordinatesController/clsCoordinatesController.php";
+
+// $obj = new XMLprueba();
 
 if (isset($_REQUEST["coordinates"])) {
 
@@ -23,10 +26,12 @@ if (isset($_REQUEST["coordinates"])) {
 
     if ($data -> state) {
         
-        $result =  clsCoordinatesController::GetCoordinatesDB();
+        $result =  clsCoordinatesController::GetCoordinatesDBinJSON();
         clsCoordinatesController::InsertCoordinatesToLog(true);
         clsCoordinatesController::DeleteCoordinates(true);
-        var_dump($result);
+
+        echo json_encode($result);
+        
         
 
     }

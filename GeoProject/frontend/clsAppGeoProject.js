@@ -52,8 +52,10 @@ class clsAppGeoProject {
             this.obj_clsView.showExecutionTimer();
 
         } else {
+            
             this.obj_clsNavCoord.stopNavigation();
             this.obj_clsView.clearInterval();
+            this.obj_clsView.removeInitButtons();
         }
         
     }
