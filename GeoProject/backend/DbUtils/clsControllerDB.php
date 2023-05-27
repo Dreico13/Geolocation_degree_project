@@ -83,23 +83,54 @@ class clsControllerDb implements ControllerDataBaseInterface {
 
     public function fetchExecutionProcedure() : void
     {
+
         $this -> procedureData = $this -> request -> fetchAll(PDO::FETCH_ASSOC);
     }
 
 /////////////////////////////////////////
 
     public function dbResponse() {
+        
+        if (isset($this -> procedureData)) {
+
+            if (count($this -> procedureData) > 1) {
+
+                $arr_coordinates = [];
+                foreach($this -> procedureData as $value) {
+                    foreach($value as $coordinates) {
+                        array_push($arr_coordinates,$coordinates);
+                    }
+                }
+
+                $concatenarCoordenadas = "";
+                foreach ($arr_coordinates as $coordinates) {
+                    $concatenarCoordenadas .= $coordinates;
+                }
+
+                return $concatenarCoordenadas;
+    
+            } else {
+    
+                foreach($this -> procedureData[0] as $value) {
+                    $coordinates = $value;
+                }
+                
+                return $coordinates;
+            }
+        }  
+    }
+
+//////////////////////////////////////////
+    public function responseInXML() {
 
         if (isset($this -> procedureData)) {
 
             foreach ($this -> procedureData[0] as $value) {
-                $arr = $value;
+                $xml_coordinates = $value;
             }
-    
-            return $arr;
 
+            return $xml_coordinates;
         }
-        
     }
 
 
