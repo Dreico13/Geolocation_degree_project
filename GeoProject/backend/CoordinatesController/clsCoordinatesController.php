@@ -15,7 +15,7 @@ class clsCoordinatesController {
 //////////////////////////////////////////////////
     public static function GetCoordinatesDBinXML() {
         $obj_clsControllerDB = new clsControllerDb("sp_sap_get_coordinates_in_xml");
-        $result = $obj_clsControllerDB ->dbResponse();
+        $result = $obj_clsControllerDB ->responseInXML();
         return $result;
     }
 

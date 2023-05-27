@@ -28,24 +28,34 @@ export class clsView {
     static initMap(pCoordinates) {
 
         var coordinates = JSON.parse(pCoordinates);
-        console.log(coordinates);
+        console.log(typeof coordinates);
 
-        
-            // Crea el mapa en el contenedor con el ID "map"
-            var map = L.map("map").setView([41.271296, 1.9759104], 10);
+        // Crea el mapa en el contenedor con el ID "map"
+        var map = L.map("map").setView([41.271296, 1.9759104], 10);
 
-            // Agrega una capa de mapa base (por ejemplo, OpenStreetMap)
-            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                maxZoom: 19,
-                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            }).addTo(map);
+        // Agrega una capa de mapa base (por ejemplo, OpenStreetMap)
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        }).addTo(map);
 
-            // Agrega marcadores para las coordenadas
-            coordinates.forEach(function(coordinate) {
-                var lat = coordinate.latitude;
-                var lng = coordinate.longitude;
-                L.marker([lat, lng]).addTo(map);
-            });
+        // Generamos las lineas que conectan los marcadores de las coordenadas
+        var polylineCoordinates = [];
+        coordinates.forEach(function(coordinate) {
+            var lat = coordinate.latitude;
+            var lng = coordinate.longitude;
+            polylineCoordinates.push([lat,lng]);
+        });
+        // Agrega marcadores para las coordenadas
+        coordinates.forEach(function(coordinate) {
+            var lat = coordinate.latitude;
+            var lng = coordinate.longitude;
+            L.marker([lat, lng]).addTo(map);
+            
+        });
+
+        //Conectamos los puntos entre los marcadores
+        L.polyline([polylineCoordinates]).addTo(map);
         
     }
 

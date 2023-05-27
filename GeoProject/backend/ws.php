@@ -31,11 +31,10 @@ if (isset($_REQUEST["coordinates"])) {
         clsCoordinatesController::DeleteCoordinates(true);
 
         echo json_encode($result);
-        
-        
 
     }
 
 }
+
 
 ?>
