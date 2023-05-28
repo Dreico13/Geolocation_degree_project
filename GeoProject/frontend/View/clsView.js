@@ -30,8 +30,8 @@ export class clsView {
         var coordinates = JSON.parse(pCoordinates);
         console.log(typeof coordinates);
 
-        // Crea el mapa en el contenedor con el ID "map"
-        var map = L.map("map").setView([41.271296, 1.9759104], 10);
+        // Crea el mapa en el contenedor con el ID "map" y nos situa en las coordenadas que le hemos introducido
+        var map = L.map("map").setView([coordinates[0].latitude, coordinates[0].longitude], 10);
 
         // Agrega una capa de mapa base (por ejemplo, OpenStreetMap)
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
