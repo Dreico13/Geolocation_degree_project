@@ -2,6 +2,7 @@
 
 class dataKML {
 
+  //Apartado que no hemos logrado implementar
    function  __construct($xml_object) {
     var_dump($xml_object);
     die;
