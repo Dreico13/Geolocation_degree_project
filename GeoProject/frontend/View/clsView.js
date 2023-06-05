@@ -80,7 +80,7 @@ export class clsView {
 
         this._root.appendChild(div);
 
-        //Eliminamos el boton de stop, de este modo no se puede extrer info de la base de datos
+        //Eliminamos el boton de stop, de este modo no se puede extraer info de la base de datos
         stopButton.remove();
 
     }
@@ -90,7 +90,7 @@ export class clsView {
 
             const div = document.createElement("div");
 
-            div.innerHTML = `<h1 class="text-center">Travel time:</h1><br>
+            div.innerHTML = `<h1 id="mensaje_temporizador" class="text-center">Travel time:</h1><br>
                             <h2 class="text-center" id="temporizador">00:00:00</h2>`;
 
             this._root.appendChild(div);
